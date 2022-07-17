@@ -24,7 +24,12 @@ Route::get('/dashboard', function () {
 
 Route::get('/products', [ProductController::class, 'index']);
 
-Route::get('/addproduct', [ProductController::class, 'store']);
+Route::get('/products/{id}', [ProductController::class, 'show'])
+    ->name('products.show');
+
+
+
+
      
 
 require __DIR__.'/auth.php';

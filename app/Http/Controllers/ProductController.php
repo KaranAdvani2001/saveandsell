@@ -10,22 +10,14 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return $products;
+        return view ('products.index', ['products' => $products]);
 }
 
-public function store()
-    {
-        $product = new Product;
+public function show($id)
+{
+        $product = Product::findOrFail($id);
+        return view('products.show', ['product' => $product]);
         
-        $product->category = "jeans";
-        $product->name = "Calvin Klein jeans";
-        $product->price = 85;
-        $product->sold = 0;
-
- 
-        $product->save();
-        return $product;
-
 
 }
 
