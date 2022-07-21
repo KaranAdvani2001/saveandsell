@@ -18,7 +18,6 @@ class ProductTableSeeder extends Seeder
         $product = new Product;
         $product->category_id = 1;
         $product->name = 'Nike T-shirt';
-        $product->slug = 'nike t-shirt';
         $product->description = 'A plain blue t shirt with Nike logo at the top left corner';
         $product->size = 'Large';
         $product->price = 20;
