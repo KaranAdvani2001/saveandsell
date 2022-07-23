@@ -27,7 +27,7 @@
                     <h2 class="title">Add Product For Sale/Trade</h2>
                 </div>
                 <div class="card-body">
-                <form method="POST" action = "{{ route('products.index') }}" > >
+                <form method="POST" action = "{{ route('products.index') }}" >
                         @csrf
                         <div class="form-row">
                             <div class="name">Category Name</div>
@@ -80,10 +80,10 @@
                                 <div class="label--desc">Upload a clear image of the product. Max file size 50 MB</div>
                             </div>
                         </div>
-                    </form>
+                        <div class="card-footer">
+                <button class="btn btn--radius-2 btn--blue-2" type="submit">Add Product</button>
                 </div>
-                <div class="card-footer">
-                 <a href="{{ route('products.index') }}" button  class="btn btn--radius-2 btn--blue-2" type="submit">Add Product</button>
+                   </form>
                 </div>
             </div>
         </div>
