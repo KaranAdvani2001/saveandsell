@@ -28,7 +28,7 @@ Route::get('/about', [AboutController::class, 'index'])
     ->name('about.index');;
 
 Route::get('/cart', [CartController::class, 'index'])
-    ->name('Cart.index');;
+    ->name('cart.index');;
 
 Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');;
