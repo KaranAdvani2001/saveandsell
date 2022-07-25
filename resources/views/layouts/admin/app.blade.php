@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Star Admin2 </title>
+  <title>SaveAndSell - Admin </title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('backend/vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{ asset('backend/vendors/ti-icons/css/themify-icons.css')}}">
@@ -83,7 +83,10 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
+  <!-- JavaScript Bundle with Popper -->
+
   <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- endinject -->
 </body>
 
