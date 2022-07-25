@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/admin')->name('admin.')->group(function (){
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard.index');
     /**
-     * put all crud routes of products, categories here
+     * Category
      */
-    
      Route::prefix('/category')->name('category.')->group(function (){
         Route::get('/index', [CategoryController::class, 'index'])->name('index');
         Route::get('/create',[CategoryController::class, 'create'])->name('create');
         Route::post('/store',[CategoryController::class, 'store'])->name('store');
         Route::get('{id}/edit',[CategoryController::class, 'edit'])->name('edit');
+        Route::patch('{id}/update',[CategoryController::class, 'update'])->name('update');
      });
 });
