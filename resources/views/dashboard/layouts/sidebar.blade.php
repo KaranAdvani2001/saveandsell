@@ -24,13 +24,23 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{route('category.index')}}" class="nav-link active">
+            <a href="{{route('category.index')}}" class="nav-link {{isset($menu) && $menu == 'category' ?'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Category
               </p>
             </a>
           </li>
+
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{route('product.index')}}" class="nav-link {{isset($menu) && $menu == 'product' ?'active':''}}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Product
+              </p>
+            </a>
+          </li>
+          
 
           {{-- <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">

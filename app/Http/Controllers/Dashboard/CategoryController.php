@@ -12,12 +12,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::orderBy('name')->simplePaginate(5);
-        return view('dashboard.category.index',['categories' => $categories]);
+        return view('dashboard.category.index',['categories' => $categories, 'menu' => 'category']);
     }
 
     public function create()
     {
-        return view('dashboard.category.create');
+        return view('dashboard.category.create',['menu' => 'category']);
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class CategoryController extends Controller
         try {
             $category = Category::where(['id' => decrypt($id)])->first();
             if(!empty($category)) {
-                return view('dashboard.category.edit',['category' => $category]);
+                return view('dashboard.category.edit',['category' => $category, 'menu' => 'category']);
             } 
             return redirect()->route('category.index')->with('dismiss', 'Category does not found');
 
