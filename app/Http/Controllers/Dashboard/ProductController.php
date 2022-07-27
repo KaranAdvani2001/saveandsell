@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -26,7 +27,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'category_id' => 'required',
-            'name' => 'required|unique:products',
+            'name' => 'required',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
             'image' => 'required|mimes:jpg,jpeg,png,bmp,tiff |max:4096'
@@ -40,7 +41,7 @@ class ProductController extends Controller
             }
                 
             $productData = [
-                'user_id'       => 1,
+                'user_id'       => Auth::id(),
                 'category_id'   => $request->category_id,
                 'name'          => $request->name,
                 'size'          => $request->size,
@@ -62,11 +63,13 @@ class ProductController extends Controller
     public function edit($id)
     {
         try {
+            $categories = Category::orderBy('name')->get();
             $product = product::where(['id' => decrypt($id)])->first();
+
             if(!empty($product)) {
-                return view('dashboard.product.edit',['product' => $product, 'menu' => 'product']);
+                return view('dashboard.product.edit',['product' => $product, 'categories' => $categories, 'menu' => 'product']);
             } 
-            return redirect()->route('product.index')->with('dismiss', 'product does not found');
+            return redirect()->route('product.index')->with('dismiss', 'Product does not found');
 
         } catch(Exception $e) {
             return redirect()->route('product.index')->with('dismiss', 'product does not found');
@@ -76,34 +79,55 @@ class ProductController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:products,name,'. $request->edit_id,
+            'category_id' => 'required',
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp,tiff |max:4096'
         ]);
 
-        $product = product::where(['id' => $request->edit_id])->first();
-        if(!empty($product)) {
-            $product->update([
-                'name' => $request->name
-            ]);
+        try {
 
-            return redirect()->route('product.index')->with('success', "product successfully updated");
+            $product = Product::where(['id' => $request->edit_id])->first();
+            if(empty($product))  {
+                return redirect()->back()->with('dismiss', "Product doesn't exists");
+            }
+                
+            $productData = [
+                'user_id'       => Auth::id(),
+                'category_id'   => $request->category_id,
+                'name'          => $request->name,
+                'size'          => $request->size,
+                'price'         => $request->price,
+                'quantity'      => $request->quantity,
+                'description'   => $request->description,
+            ];
+            if(!empty($request->image)) {
+                $productData['image'] = $this->fileUpload($request->image, 'uploaded_files/images/');
+            }
+
+            $product->update($productData);
+            return redirect()->route('product.index')->with('success', "Product successfully updated");
+
+        } catch( Exception $e) {
+            return redirect()->back()->with('dismiss', $e->getMessage());
         }
-        return redirect()->route('product.index')->with('dismiss', "product doesn't exixt");
     }
 
     
     public function delete($id)
     {
         try {
-            $product = product::where(['id' => decrypt($id)])->first();
+            $product = Product::where(['id' => decrypt($id)])->first();
             if(!empty($product)) {
                 $product->delete();
-                return redirect()->route('product.index')->with('success', 'product successfully deleted');
+                return redirect()->route('product.index')->with('success', 'Product successfully deleted');
 
             } 
-            return redirect()->route('product.index')->with('dismiss', 'product does not found');
+            return redirect()->route('product.index')->with('dismiss', 'Product does not found');
 
         } catch(Exception $e) {
-            return redirect()->route('product.index')->with('dismiss', 'product does not found');
+            return redirect()->route('product.index')->with('dismiss', 'Product does not found');
         }
     }
 

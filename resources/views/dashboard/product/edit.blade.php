@@ -1,87 +1,80 @@
 @extends('dashboard.master')
 @section('main_content')
-{{-- <div class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-
-              <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's
-                content.
-              </p>
-
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-
-          <div class="card card-primary card-outline">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-
-              <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's
-                content.
-              </p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div><!-- /.card -->
-        </div>
-        <!-- /.col-md-6 -->
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-header">
-              <h5 class="m-0">Featured</h5>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Special title treatment</h6>
-
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="m-0">Featured</h5>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Special title treatment</h6>
-
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <!-- /.col-md-6 -->
-      </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div> --}}
 
 <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Category Create</h3>
+      <h3 class="card-title">Product Update</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form class="form-horizontal" action="{{route('category.update')}}" method="POST">
+    <form class="form-horizontal" action="{{route('product.update')}}" method="POST" enctype="multipart/form-data" >
       @csrf
       <div class="card-body">
+
         <div class="form-group row">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Category <span class="text-danger">*</span></label>
           <div class="col-sm-10">
-            <input type="text" name="name" class="form-control" value="{{$category->name}}" id="inputEmail3" placeholder="Category Name">
+            <select type="text" name="category_id" class="form-control" required>
+              @if ($product->category) 
+                <option value="{{$product->category_id}}" selected>{{$product->category->name}}</option>
+              @else
+                <option value="{{null}}">Select Category</option>
+              @endif
+              @if(isset($categories[0]))
+                @foreach ($categories as $category )
+                  <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+              @endif
+            </select>
+            <span class="text-danger">{{$errors->first('category_id') }}</span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Name<span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="text" name="name" class="form-control" value="{{$product->name}}" required>
             <span class="text-danger">{{$errors->first('name') }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Size</label>
+          <div class="col-sm-10">
+            <input type="text" name="size" class="form-control" value="{{$product->size}}">
+            <span class="text-danger">{{$errors->first('size') }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Price<span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="number" step="any" name="price" class="form-control" required value="{{$product->price}}">
+            <span class="text-danger">{{$errors->first('price') }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Quantity<span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="number" name="quantity" class="form-control" required value="{{$product->quantity}}">
+            <span class="text-danger">{{$errors->first('quantity') }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
+          <div class="col-sm-10">
+            <textarea  name="description" class="form-control" cols="30" rows="5">{{$product->description}}</textarea>
+            <span class="text-danger">{{$errors->first('description') }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Product Image<span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <input type="file" name="image" class="form-control">
+            <span class="text-danger">{{$errors->first('image') }}</span>
           </div>
         </div>
       </div>
 
-      <input type="hidden" name="edit_id" value="{{$category->id}}">
+      <input type="hidden" name="edit_id" value="{{$product->id}}">
       <!-- /.card-body -->
       <div class="card-footer">
         <button type="submit" class="btn btn-info float-right">Submit</button>

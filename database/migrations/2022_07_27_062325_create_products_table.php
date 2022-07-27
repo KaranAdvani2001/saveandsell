@@ -23,6 +23,7 @@ return new class extends Migration
             $table->double('price')->default(0);
             $table->string('image')->default('productdefault.jpg');
             $table->integer('quantity')->default(0);
+            $table->string('type')->default('trade');
             $table->timestamps();
         });
     }
