@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::orderBy('id')->simplePaginate(5);
+        $products = Product::where('user_id', Auth::id())->orderBy('id')->simplePaginate(5);
         return view('dashboard.product.index',['products' => $products, 'menu' => 'product']);
     }
 
@@ -26,11 +26,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_id' => 'required',
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'quantity' => 'required|numeric',
-            'image' => 'required|mimes:jpg,jpeg,png,bmp,tiff |max:4096'
+            'category_id'   => 'required',
+            'name'          => 'required',
+            'price'         => 'required|numeric',
+            'quantity'      => 'required|numeric',
+            'image'         => 'required|mimes:jpg,jpeg,png,bmp,tiff |max:4096',
+            'type'          => 'required'
         ]);
 
         try {
@@ -48,7 +49,8 @@ class ProductController extends Controller
                 'price'         => $request->price,
                 'quantity'      => $request->quantity,
                 'description'   => $request->description,
-                'image'         => $image
+                'image'         => $image,
+                'type'          => $request->type,
             ];
 
             $save = Product::create($productData);
@@ -100,6 +102,7 @@ class ProductController extends Controller
                 'size'          => $request->size,
                 'price'         => $request->price,
                 'quantity'      => $request->quantity,
+                'type'          => $request->type,
                 'description'   => $request->description,
             ];
             if(!empty($request->image)) {

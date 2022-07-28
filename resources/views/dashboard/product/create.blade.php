@@ -55,6 +55,17 @@
           </div>
         </div>
         <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Product Type <span class="text-danger">*</span></label>
+          <div class="col-sm-10">
+            <select type="text" name="type" class="form-control" required>
+              <option value="{{null}}">Select Product Type</option>
+              <option value="trade">Trade</option>
+              <option value="for sale">For Sale</option>
+            </select>
+            <span class="text-danger">{{$errors->first('type') }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
           <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
           <div class="col-sm-10">
             <textarea  name="description" class="form-control" cols="30" rows="5"></textarea>

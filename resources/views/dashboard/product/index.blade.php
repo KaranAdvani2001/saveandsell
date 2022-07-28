@@ -25,6 +25,7 @@
                 <th>Size</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th>Type</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -38,6 +39,7 @@
                     <td>{{$product->size}}</td>
                     <td>{{$product->price}} $</td>
                     <td>{{$product->quantity}}</td>
+                    <td>{{$product->type}}</td>
                     <td>
                       <a type="button" name="edit" href="{{route('product.edit', encrypt($product->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                       <a type="button" name="delete" href="{{route('product.delete', encrypt($product->id))}}" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
