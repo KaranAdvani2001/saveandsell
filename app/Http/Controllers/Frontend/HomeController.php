@@ -27,7 +27,15 @@ class HomeController extends Controller
             return $q->orderBy('id','desc');
         });
 
-        $products = $query->simplePaginate(2);
+        $query->when(request('products') == 'trade', function ($q) use($request) {
+            return $q->where('type', 'trade')->orderBy('id','desc');
+        });
+
+        $query->when(request('products') == 'for-sale', function ($q) use($request) {
+            return $q->where('type','for sale')->orderBy('id','desc');
+        });
+
+        $products = $query->simplePaginate(8);
         return view('frontend.index', ['products' => $products, 'menu' => 'shop']);
 
     }

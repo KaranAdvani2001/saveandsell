@@ -4,6 +4,8 @@
     <body>
         <!-- Navigation-->
         @include('frontend.include.navbar')
+        @include('dashboard.message.message')
+
         <!-- Section-->
         @yield('main_content')
         <!-- Footer-->

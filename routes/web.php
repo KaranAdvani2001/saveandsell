@@ -24,6 +24,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
  * Cart
  */
 
+Route::post('cart-add', [CartController::class, 'add'])->name('cart.add');
 Route::get('cart', [CartController::class, 'index'])->name('cart.list');
 
 

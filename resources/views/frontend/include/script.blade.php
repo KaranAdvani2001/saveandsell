@@ -2,3 +2,4 @@
 <!-- Core theme JS-->
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/global.js')}}"></script>
+@yield('after_script')
