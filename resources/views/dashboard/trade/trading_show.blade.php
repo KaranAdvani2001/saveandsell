@@ -19,21 +19,21 @@
           <!-- info row -->
           <div class="row invoice-info">
             <div class="col-sm-8 invoice-col">
-              Seller Info
+              Buyer Info
               <address>
-                @if (!empty($trade->seller))
-                  <strong>{{$trade->seller->first_name.' '.$trade->seller->last_name}}</strong><br>
-                  {{$trade->seller->address_line1}}<br>
-                  {{$trade->seller->address_line2}}<br>
-                  {{$trade->seller->city.','.$trade->seller->post_code}}<br>
-                  {{$trade->seller->country}}<br>
-                  Phone: {{$trade->seller->telephone_number}}
+                @if (!empty($trade->buyer))
+                  <strong>{{$trade->buyer->first_name.' '.$trade->buyer->last_name}}</strong><br>
+                  {{$trade->buyer->address_line1}}<br>
+                  {{$trade->buyer->address_line2}}<br>
+                  {{$trade->buyer->city.','.$trade->buyer->post_code}}<br>
+                  {{$trade->buyer->country}}<br>
+                  Phone: {{$trade->buyer->telephone_number}}
                 @endif
               </address>
             </div>
 
             <div class="col-sm-4 invoice-col">
-             Trade Info
+             Trade Contact Method
               <address>
                 Method : {{$trade->contact_method}}<br>
                 Contact : {{$trade->contact_info}}
@@ -92,20 +92,30 @@
           <div class="row no-print">
             <div class="col-12">
               <button type="button" class="btn btn-success float-left" disabled>
-               Status: {{$trade->buyer_side_status}}
+               Status: {{$trade->seller_side_status}}
               </button>
-              @if ($trade->seller_side_status == 'Shipping')
-              <form action="{{route('my.trade.received')}}" method="POST">
+              @if ($trade->seller_side_status == 'accept')
+              <form action="{{route('trading.status.update')}}" method="POST">
                 @csrf
+                <input type="hidden" name="status" value="Shipping">
                 <input type="hidden" name="trade_id" value="{{$trade->id}}">
                 <button type="submit" class="btn btn-info float-right" style="margin-right: 5px;">
-                  Received
+                  Shipping
                 </button>
                </form>
                @elseif ($trade->is_completed)
                <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" disabled>
                 Completed
-              </button>            
+              </button>
+              @elseif ($trade->seller_side_status == 'Requested') 
+              <form action="{{route('trading.status.update')}}" method="POST">
+                @csrf
+                <input type="hidden" name="trade_id" value="{{$trade->id}}">
+                <input type="hidden" name="status" value="accept">
+                <button type="submit" class="btn btn-info float-right" style="margin-right: 5px;">
+                  Accept
+                </button>
+               </form>           
               @endif
             </div>
           </div>

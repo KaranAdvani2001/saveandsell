@@ -40,11 +40,19 @@ Route::group(['prefix' => 'dashboard'], function() {
    });
 
      /**
-      * trade
+      * my trade
      */
 
       Route::get('my-trade', [TradeController::class, 'myTrade'])->name('my.trade');
       Route::get('trade-details/{id}', [TradeController::class, 'details'])->name('trade.details');
       Route::post('my-trade-received', [TradeController::class, 'myTradeReceived'])->name('my.trade.received');
-      
+    
+    /**
+      * my trade
+     */
+
+    Route::get('trading', [TradeController::class, 'trading'])->name('trading.list');
+    Route::get('trading-details/{id}', [TradeController::class, 'tradingDetails'])->name('trading.details');
+    Route::post('trading-status-update', [TradeController::class, 'tradingStatusUpdate'])->name('trading.status.update');
+  
 });

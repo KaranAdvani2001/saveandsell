@@ -12,11 +12,11 @@ class TradeController extends Controller
 {
 
     /**
-     * My trade
+     * *************************** My trade ***********************************
      */
     public function myTrade()
     {
-        $trades = Trade::where(['buyer_id' =>Auth::id()])->simplePaginate(5);
+        $trades = Trade::where(['buyer_id' =>Auth::id()])->orderBy('id','desc')->simplePaginate(5);
         return view('dashboard.trade.my_trade',['trades' => $trades, 'menu' => 'trade', 'submenu' => 'my trade']);
     }
 
@@ -44,4 +44,39 @@ class TradeController extends Controller
         }
         return redirect()->back()->with('dismiss', "Product doesn't exists");
     }
+
+    /**
+     * *************************************** Trading *********************
+     */
+    public function trading()
+    {
+        $trades = Trade::where(['seller_id' =>Auth::id()])->orderBy('id','desc')->simplePaginate(5);
+        return view('dashboard.trade.trading',['trades' => $trades, 'menu' => 'trade', 'submenu' => 'trading']);
+    }
+
+    public function tradingDetails($id)
+    {
+        try {
+            $trade = Trade::where(['id' => decrypt($id)])->first();
+            return view('dashboard.trade.trading_show',['trade' => $trade, 'menu' => 'trade', 'submenu' => 'trading']);
+
+        } catch (Exception $e) {
+
+        }
+    }
+
+    public function tradingStatusUpdate(Request $request)
+    {
+        $trade = Trade::where(['id' => $request->trade_id])->first();
+        if(!empty($trade)) {
+            
+            $trade->update([
+                'buyer_side_status'     => $request->status == 'accept' ? 'Processing' : 'Shipping',
+                'seller_side_status'    => $request->status,
+            ]);
+            return redirect()->back()->with('success', "Product successfully ".$request->status);
+        }
+        return redirect()->back()->with('dismiss', "Product doesn't exists");
+    }
+
 }

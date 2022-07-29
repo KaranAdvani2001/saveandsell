@@ -34,9 +34,9 @@
                     <td>{{!empty($trade->seller) ? $trade->seller->telephone_number : null}}</td>
                     <td>{{!empty($trade->seller) ? $trade->seller->addresss_line1.','.$trade->seller->city.','.$trade->seller->country : null}}</td>
                     
-                    <td>{{$trade->buyer_side_status}}</td>
+                    <td>{{$trade->seller_side_status}}</td>
                     <td>
-                      <a type="button" name="edit" href="{{route('trade.details', encrypt($trade->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                      <a type="button" name="edit" href="{{route('trading.details', encrypt($trade->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                       {{-- <a type="button" name="delete" href="{{route('trade.delete', encrypt($trade->id))}}" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a> --}}
                       
                     </td>

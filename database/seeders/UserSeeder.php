@@ -22,7 +22,12 @@ class UserSeeder extends Seeder
             'telephone_number'      => '+8801515000000',
             'email'                 => 'admin@gmail.com',
             'password'              => Hash::make(123456),
-            'is_admin'              => 1
+            'is_admin'              => 1,
+            'address_line1'         => 'Narail',
+            'address_line2'         => 'Narail Sadar',
+            'post_code'             => '1600',
+            'city'                  => 'Dhaka',
+            'country'               => 'Bangladesh',
         ]);
     }
 }
