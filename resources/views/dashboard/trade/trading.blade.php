@@ -16,9 +16,9 @@
                 <th>#</th>
                 <th>Product Image</th>
                 <th>Product</th>
-                <th>Seller Name</th>
-                <th>Seller Contact</th>
-                <th>Seller Address</th>
+                <th>Buyer Name</th>
+                <th>Buyer Contact</th>
+                <th>Buyer Address</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -30,9 +30,9 @@
                     <td>{{$loop->iteration}}</td>
                     <td><img src="{{$trade->product->image}}" alt="" width="30" height="30"></td>
                     <td>{{$trade->product->name}}</td>
-                    <td>{{!empty($trade->seller) ? $trade->seller->first_name.' '.$trade->seller->last_name : null}}</td>
-                    <td>{{!empty($trade->seller) ? $trade->seller->telephone_number : null}}</td>
-                    <td>{{!empty($trade->seller) ? $trade->seller->addresss_line1.','.$trade->seller->city.','.$trade->seller->country : null}}</td>
+                    <td>{{!empty($trade->buyer) ? $trade->buyer->first_name.' '.$trade->buyer->last_name : null}}</td>
+                    <td>{{!empty($trade->buyer) ? $trade->buyer->telephone_number : null}}</td>
+                    <td>{{!empty($trade->buyer) ? $trade->buyer->address_line1.','.$trade->buyer->city.','.$trade->buyer->country : null}}</td>
                     
                     <td>{{$trade->seller_side_status}}</td>
                     <td>
