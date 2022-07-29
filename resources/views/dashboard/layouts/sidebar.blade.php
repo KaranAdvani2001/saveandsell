@@ -23,6 +23,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          @if(Auth::user()->is_admin)
           <li class="nav-item has-treeview menu-open">
             <a href="{{route('category.index')}}" class="nav-link {{isset($menu) && $menu == 'category' ?'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -31,6 +32,7 @@
               </p>
             </a>
           </li>
+          @endif
 
           <li class="nav-item has-treeview menu-open">
             <a href="{{route('product.index')}}" class="nav-link {{isset($menu) && $menu == 'product' ?'active':''}}">
@@ -41,30 +43,53 @@
             </a>
           </li>
           
-
-          {{-- <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview {{isset($menu) && $menu == 'trade' ?' menu-open':''}}">
+            <a href="#" class="nav-link {{isset($menu) && $menu == 'trade' ?'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Starter Pages
+                Trade
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="{{route('my.trade')}}" class="nav-link {{isset($submenu) && $submenu == 'my trade' ?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
+                  <p>My Trade</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link {{isset($submenu) && $submenu == 'trade list' ?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+                  <p>Trade List</p>
                 </a>
               </li>
             </ul>
-          </li> --}}
+          </li>
+
+          <li class="nav-item has-treeview {{isset($menu) && $menu == 'profile' ?' menu-open':''}}">
+            <a href="#" class="nav-link {{isset($menu) && $menu == 'profile' ?'active':''}}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Profile
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link {{isset($submenu) && $submenu == 'profile' ?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Profile</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link {{isset($submenu) && $submenu == 'password' ?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Password change</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

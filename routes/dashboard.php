@@ -3,12 +3,13 @@
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\TradeController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'dashboard'], function() {
 
-    Route::get('/home',[DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/index',[DashboardController::class, 'index'])->name('dashboard.index');
 
 
     /**
@@ -37,4 +38,13 @@ Route::group(['prefix' => 'dashboard'], function() {
       Route::post('/update',[ProductController::class, 'update'])->name('update');
       Route::get('delete/{id}',[ProductController::class, 'delete'])->name('delete');
    });
+
+     /**
+      * trade
+     */
+
+      Route::get('my-trade', [TradeController::class, 'myTrade'])->name('my.trade');
+      Route::get('trade-details/{id}', [TradeController::class, 'details'])->name('trade.details');
+      Route::post('my-trade-received', [TradeController::class, 'myTradeReceived'])->name('my.trade.received');
+      
 });

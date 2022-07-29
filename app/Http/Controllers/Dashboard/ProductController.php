@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::where('user_id', Auth::id())->orderBy('id')->simplePaginate(5);
+        $products = Product::where('seller_id', Auth::id())->orderBy('id')->simplePaginate(5);
         return view('dashboard.product.index',['products' => $products, 'menu' => 'product']);
     }
 
@@ -42,7 +42,7 @@ class ProductController extends Controller
             }
                 
             $productData = [
-                'user_id'       => Auth::id(),
+                'seller_id'       => Auth::id(),
                 'category_id'   => $request->category_id,
                 'name'          => $request->name,
                 'size'          => $request->size,
@@ -96,7 +96,7 @@ class ProductController extends Controller
             }
                 
             $productData = [
-                'user_id'       => Auth::id(),
+                'seller_id'       => Auth::id(),
                 'category_id'   => $request->category_id,
                 'name'          => $request->name,
                 'size'          => $request->size,

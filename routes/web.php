@@ -4,6 +4,8 @@ use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\TradeAndBuyController;
+use App\Http\Controllers\Frontend\TradeController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +46,12 @@ Route::group(['middleware' => 'auth.user'], function() {
     Route::get('payment/{order_id}', [CheckoutController::class, 'paymentForm'])->name('payment.form');
     Route::get('stripe-payment', [CheckoutController::class, 'index'])->name('stripe.post');
 
+    /**
+     * Trade or buy
+     */
+
+     Route::post('trade',[TradeAndBuyController::class,'trade'])->name('trade');
+     Route::post('buy',[TradeAndBuyController::class,'buy'])->name('buy');
 });
 
 

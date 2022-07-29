@@ -33,7 +33,7 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Create Account</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route('login.form')}}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route('login.form')}}">Signup</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route('signup.form')}}">Signup</a></li>
                     </ul>
                 </li>
                 @endif

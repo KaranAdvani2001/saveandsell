@@ -27,7 +27,7 @@
                     <h2 class="title">Add Product For Sale/Trade</h2>
                 </div>
                 <div class="card-body">
-                <form method="POST" action = "{{ route('products.index') }}" >
+                    <form method="POST" action = "{{ route('products.index') }}" >
                         @csrf
                         <div class="form-row">
                             <div class="name">Category Name</div>
@@ -57,33 +57,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="name">Size</div>
-                            <div class="value">
-                                <input class="input--style-6" type="string" name="size">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Price</div>
-                            <div class="value">
-                                <input class="input--style-6" type="double" name="price">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Product Image</div>
-                            <div class="value">
-                                <div class="input-group js-input-file">
-                                    <input class="input-file" type="file" name="product_image" id="file">
-                                    <label class="label--file" for="file">Browse</label>
-                                    <span class="input-file__info">No image chosen</span>
-                                </div>
-                                <div class="label--desc">Upload a clear image of the product. Max file size 50 MB</div>
-                            </div>
-                        </div>
                         <div class="card-footer">
-                <button class="btn btn--radius-2 btn--blue-2" type="submit">Add Product</button>
-                </div>
-                   </form>
+                            <button class="btn btn--radius-2 btn--blue-2" type="submit">Add Product</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
