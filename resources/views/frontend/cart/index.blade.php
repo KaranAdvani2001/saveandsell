@@ -53,7 +53,7 @@
   
           <div class="card">
             <div class="card-body">
-              <a type="button" href="{{route('payment.form')}}" class="btn btn-warning btn-block btn-lg">Proceed to Pay</a>
+              <a type="button" href="{{route('shipping.address')}}" class="btn btn-warning btn-block btn-lg">Checkout</a>
             </div>
           </div>
   

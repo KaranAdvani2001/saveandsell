@@ -1,68 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('frontend.master')
+@section('main_content')
 
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Colorlib Templates">
-    <meta name="author" content="Colorlib">
-    <meta name="keywords" content="Colorlib Templates">
+<section class="h-100" style="background-color: #eee;">
+  <form action="{{route('login')}}" method="POST">
+    @csrf
+    <div class="container h-100 py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-10">
+  
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-normal mb-0 text-black">Login here for sale and trade</h3>
+              </div>
 
-    <!-- Title Page-->
-    <title>Add Product For Sale</title>
+              <div class="card mb-4">
 
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Main CSS-->
-    <link href="{{asset('css/main.css')}}" rel="stylesheet" media="all">
-</head>
-
-<body>
-
-    <div class="page-wrapper bg-dark p-t-100 p-b-50">
-        <div class="wrapper wrapper--w900">
-            <div class="card card-6">
-
-                <div class="card-heading">
-                    <h2 class="title">Login</h2>
+                <div class="card-body px-2 py-2 d-flex flex-row">
+                  <div class="form-outline flex-fill">
+                    <label class="form-label" for="form1">Telephone Number</label>
+                    <input type="text" id="form1" name="telephone_number" value="{{old('telephone_number')}}" class="form-control" required/>
+                  <span class="text-danger">{{$errors->first('telephone_number')}}</span>
+                  </div>
                 </div>
-                <div class="card-body">
-    @include('dashboard.message.message')
-
-                <form method="POST" action = "{{route('login')}}">
-                        @csrf
-                        <div class="form-row">
-                            <div class="name">Email</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-6" type="email" name="email" placeholder="Your email here" required>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="name">Password</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-6" type="password" name="password" placeholder="Password" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                <button class="btn btn--radius-2 btn--blue-2" type="submit">Login</button>
+                <div class="card-body px-2 py-2 d-flex flex-row">
+                <div class="form-outline flex-fill">
+                    <label class="form-label" for="form1">Password</label>
+                    <input type="password" id="form1" name="password" class="form-control" min="6" required/>
+                    <span class="text-danger">{{$errors->first('password')}}</span>
                 </div>
-                   </form>
-                </div>
+                </div>            
+          </div>
+          
+  
+          <div class="card">
+            <div class="card-body">
+              <button type="submit"  class="btn btn-warning btn-block btn">Login</button>
             </div>
+          </div>
+  
         </div>
+      </div>
     </div>
-
-    <!-- Main JS-->
-    <script src="{{asset('js/global.js')}}"></script>
-
-</body>
-
-</html>
-
+  </form>
+  </section>
+@endsection

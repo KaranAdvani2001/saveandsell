@@ -18,21 +18,32 @@ Route::get('/product/details/{id}', [HomeController::class, 'details'])->name('p
 
 Route::get('login', [AuthController::class, 'loginForm'])->name('login.form');
 Route::post('login-check', [AuthController::class, 'login'])->name('login');
+
+Route::get('signup', [AuthController::class, 'signupForm'])->name('signup.form');
+Route::post('signup-store', [AuthController::class, 'signup'])->name('signup');
+
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
-/**
- * Cart
- */
+Route::group(['middleware' => 'auth.user'], function() {
 
-Route::post('cart-add', [CartController::class, 'add'])->name('cart.add');
-Route::get('cart', [CartController::class, 'index'])->name('cart.list');
+    /**
+     * Cart
+     */
 
-/**
- * Checkout
- */
+    Route::post('cart-add', [CartController::class, 'add'])->name('cart.add');
+    Route::get('cart', [CartController::class, 'index'])->name('cart.list');
 
-Route::get('payment', [CheckoutController::class, 'paymentForm'])->name('payment.form');
-Route::get('stripe-payment', [CheckoutController::class, 'index'])->name('stripe.post');
+    /**
+     * Checkout
+     */
+
+    Route::get('checkout', [CheckoutController::class, 'shippingAddress'])->name('shipping.address')->middleware('auth.user');
+    Route::post('shipping-address', [CheckoutController::class, 'shippingAddressStore'])->name('shipping.address.store');
+
+    Route::get('payment/{order_id}', [CheckoutController::class, 'paymentForm'])->name('payment.form');
+    Route::get('stripe-payment', [CheckoutController::class, 'index'])->name('stripe.post');
+
+});
 
 

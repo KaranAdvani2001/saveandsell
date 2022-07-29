@@ -32,32 +32,32 @@
               </div>
   
           <div class="card mb-4">
-            <div class="card-body p-4 d-flex flex-row">
+            <div class="card-body px-2 py-2 d-flex flex-row">
               <div class="form-outline flex-fill">
                 <label class="form-label" for="form1">Name on Card</label>
-                <input type="text" id="form1" class="form-control form-control-lg" />
+                <input type="text" id="form1" class="form-control" />
               </div>
             </div>
 
-            <div class="card-body p-4 d-flex flex-row">
+            <div class="card-body px-2 py-2 d-flex flex-row">
                 <div class="form-outline flex-fill">
                   <label class="form-label" for="form1">Card Number</label>
-                  <input type="text" id="form1" class="form-control form-control-lg" />
+                  <input type="text" id="form1" class="form-control" />
                 </div>
             </div>
 
-            <div class="card-body p-4 d-flex flex-row">
+            <div class="card-body px-2 py-2 d-flex flex-row">
                 <div class="form-outline flex-fill">
                   <label class="form-label" for="form1">CVC</label>
-                  <input type="text" id="form1" class="form-control form-control-lg" />
+                  <input type="text" id="form1" class="form-control" />
                 </div>
                 <div class="form-outline flex-fill">
                     <label class="form-label" for="form1">Expiration Month</label>
-                    <input type="text" id="form1" class="form-control form-control-lg" />
+                    <input type="text" id="form1" class="form-control" />
                   </div>
                   <div class="form-outline flex-fill">
                     <label class="form-label" for="form1">Expiration Year</label>
-                    <input type="text" id="form1" class="form-control form-control-lg" />
+                    <input type="text" id="form1" class="form-control" />
                   </div>
             </div>
           </div>
@@ -65,7 +65,7 @@
   
           <div class="card">
             <div class="card-body">
-              <button type="button"  class="btn btn-warning btn-block btn-lg">Pay Now ($100)</a>
+              <button type="button"  class="btn btn-warning btn-block">Pay Now ($100)</a>
             </div>
           </div>
   
