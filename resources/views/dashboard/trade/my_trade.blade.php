@@ -32,7 +32,7 @@
                     <td>{{$trade->product->name}}</td>
                     <td>{{!empty($trade->seller) ? $trade->seller->first_name.' '.$trade->seller->last_name : null}}</td>
                     <td>{{!empty($trade->seller) ? $trade->seller->telephone_number : null}}</td>
-                    <td>{{!empty($trade->seller) ? $trade->seller->addresss_line1.','.$trade->seller->city.','.$trade->seller->country : null}}</td>
+                    <td>{{!empty($trade->seller) ? $trade->seller->address_line1.','.$trade->seller->city.','.$trade->seller->country : null}}</td>
                     
                     <td>{{$trade->buyer_side_status}}</td>
                     <td>

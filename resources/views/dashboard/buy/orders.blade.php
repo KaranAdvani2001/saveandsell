@@ -36,7 +36,7 @@
                     
                     <td>{{$order->seller_side_status}}</td>
                     <td>
-                      <a type="button" name="edit" href="{{route('trading.details', encrypt($order->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                      <a type="button" name="edit" href="{{route('order.details', encrypt($order->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                       {{-- <a type="button" name="delete" href="{{route('order.delete', encrypt($order->id))}}" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a> --}}
                       
                     </td>

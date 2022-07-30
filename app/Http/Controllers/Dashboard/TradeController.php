@@ -74,6 +74,12 @@ class TradeController extends Controller
                 'buyer_side_status'     => $request->status == 'accept' ? 'Processing' : 'Shipping',
                 'seller_side_status'    => $request->status,
             ]);
+
+            if($request->status == 'Shipping') {
+                $trade->product->update([
+                    'quantity' => $trade->product->quantity - 1
+                ]);
+            }
             return redirect()->back()->with('success', "Product successfully ".$request->status);
         }
         return redirect()->back()->with('dismiss', "Product doesn't exists");

@@ -65,7 +65,7 @@ Route::group(['prefix' => 'dashboard'], function() {
   
 
     Route::get('orders', [BuyController::class, 'orders'])->name('orders.list');
-    Route::get('order-details/{id}', [BuyController::class, 'ordersDetails'])->name('trading.details');
+    Route::get('order-details/{id}', [BuyController::class, 'ordersDetails'])->name('order.details');
     Route::post('orders-status-update', [BuyController::class, 'orderStatusUpdate'])->name('order.status.update');
 
 

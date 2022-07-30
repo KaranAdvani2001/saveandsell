@@ -37,8 +37,6 @@
                     <td>{{$trade->seller_side_status}}</td>
                     <td>
                       <a type="button" name="edit" href="{{route('trading.details', encrypt($trade->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                      {{-- <a type="button" name="delete" href="{{route('trade.delete', encrypt($trade->id))}}" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a> --}}
-                      
                     </td>
                 </tr>
               @endforeach
