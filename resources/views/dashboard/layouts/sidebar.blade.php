@@ -50,6 +50,31 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item has-treeview {{isset($menu) && $menu == 'order' ?' menu-open':''}}">
+            <a href="#" class="nav-link {{isset($menu) && $menu == 'order' ?'active':''}}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Order
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('my.order')}}" class="nav-link {{isset($submenu) && $submenu == 'my order' ?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>My Order</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('orders.list')}}" class="nav-link {{isset($submenu) && $submenu == 'orders' ?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Orders</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           
           <li class="nav-item has-treeview {{isset($menu) && $menu == 'trade' ?' menu-open':''}}">
             <a href="#" class="nav-link {{isset($menu) && $menu == 'trade' ?'active':''}}">

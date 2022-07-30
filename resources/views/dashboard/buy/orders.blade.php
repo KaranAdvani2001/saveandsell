@@ -6,7 +6,7 @@
       {{-- <div class="card card-info"> --}}
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"></h3>Trading
+          <h3 class="card-title">Orders</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0" style="height: 400px;">
@@ -24,20 +24,20 @@
               </tr>
             </thead>
             <tbody>
-                @if(isset($trades[0]))
-                @foreach ($trades as $trade )                    
+                @if(isset($orders[0]))
+                @foreach ($orders as $order )                    
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td><img src="{{$trade->product->image}}" alt="" width="30" height="30"></td>
-                    <td>{{$trade->product->name}}</td>
-                    <td>{{!empty($trade->buyer) ? $trade->buyer->first_name.' '.$trade->buyer->last_name : null}}</td>
-                    <td>{{!empty($trade->buyer) ? $trade->buyer->telephone_number : null}}</td>
-                    <td>{{!empty($trade->buyer) ? $trade->buyer->address_line1.','.$trade->buyer->city.','.$trade->buyer->country : null}}</td>
+                    <td><img src="{{$order->product->image}}" alt="" width="30" height="30"></td>
+                    <td>{{$order->product->name}}</td>
+                    <td>{{!empty($order->buyer) ? $order->buyer->first_name.' '.$order->buyer->last_name : null}}</td>
+                    <td>{{!empty($order->buyer) ? $order->buyer->telephone_number : null}}</td>
+                    <td>{{!empty($order->buyer) ? $order->buyer->address_line1.','.$order->buyer->city.','.$order->buyer->country : null}}</td>
                     
-                    <td>{{$trade->seller_side_status}}</td>
+                    <td>{{$order->seller_side_status}}</td>
                     <td>
-                      <a type="button" name="edit" href="{{route('trading.details', encrypt($trade->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                      {{-- <a type="button" name="delete" href="{{route('trade.delete', encrypt($trade->id))}}" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a> --}}
+                      <a type="button" name="edit" href="{{route('trading.details', encrypt($order->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                      {{-- <a type="button" name="delete" href="{{route('order.delete', encrypt($order->id))}}" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a> --}}
                       
                     </td>
                 </tr>
@@ -45,7 +45,7 @@
               @endif
             </tbody>
           </table>
-          {{-- {!! $trades->links() !!} --}}
+          {{-- {!! $orders->links() !!} --}}
         </div>
         <!-- /.card-body -->
       </div>

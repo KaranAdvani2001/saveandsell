@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Buy;
 use App\Models\Product;
 use App\Models\Trade;
 use Illuminate\Http\Request;
@@ -17,6 +18,10 @@ class DashboardController extends Controller
         $data['trading'] = Trade::where(['seller_id' => Auth::id()])->count();
         $data['recent_trades'] = Trade::where(['seller_id' => Auth::id(), 'seller_side_status' => 'Requested'])->limit(5)->get();
        
+        $data['orders'] = Buy::where(['seller_id' => Auth::id()])->count();
+        $data['recent_orders'] = Buy::where(['seller_id' => Auth::id(), 'seller_side_status' => 'Requested'])->limit(5)->get();
+       
+
         return view('dashboard.index',['data' => $data,'menu' => 'dashboard']);
     }
 }

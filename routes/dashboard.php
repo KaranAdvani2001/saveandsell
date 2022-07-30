@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BuyController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductController;
@@ -40,19 +41,29 @@ Route::group(['prefix' => 'dashboard'], function() {
    });
 
      /**
-      * my trade
+      * trade
      */
 
       Route::get('my-trade', [TradeController::class, 'myTrade'])->name('my.trade');
       Route::get('trade-details/{id}', [TradeController::class, 'details'])->name('trade.details');
       Route::post('my-trade-received', [TradeController::class, 'myTradeReceived'])->name('my.trade.received');
     
-    /**
-      * my trade
-     */
-
+ 
     Route::get('trading', [TradeController::class, 'trading'])->name('trading.list');
     Route::get('trading-details/{id}', [TradeController::class, 'tradingDetails'])->name('trading.details');
     Route::post('trading-status-update', [TradeController::class, 'tradingStatusUpdate'])->name('trading.status.update');
   
+    /**
+      * buy/order
+     */
+
+    Route::get('my-order', [BuyController::class, 'myOrder'])->name('my.order');
+    Route::get('my-order-details/{id}', [BuyController::class, 'myOrderDetails'])->name('my.order.details');
+    Route::post('my-order-received', [BuyController::class, 'myOrderReceived'])->name('my.order.received');
+  
+
+  Route::get('orders', [BuyController::class, 'orders'])->name('orders.list');
+  Route::get('order-details/{id}', [BuyController::class, 'ordersDetails'])->name('trading.details');
+  Route::post('orders-status-update', [BuyController::class, 'orderStatusUpdate'])->name('order.status.update');
+
 });
