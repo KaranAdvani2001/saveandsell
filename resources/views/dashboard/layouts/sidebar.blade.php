@@ -11,7 +11,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('dashboard/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{Auth::user()->image ? Auth::user()->image : asset('dashboard/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->first_name.' '.Auth::user()->last_name}}</a>
@@ -100,7 +100,7 @@
             </ul>
           </li>
 
-          {{-- <li class="nav-item has-treeview {{isset($menu) && $menu == 'profile' ?' menu-open':''}}">
+          <li class="nav-item has-treeview {{isset($menu) && $menu == 'profile' ?' menu-open':''}}">
             <a href="#" class="nav-link {{isset($menu) && $menu == 'profile' ?'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -110,7 +110,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{isset($submenu) && $submenu == 'profile' ?'active':''}}">
+                <a href="{{route('profile')}}" class="nav-link {{isset($submenu) && $submenu == 'profile' ?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Profile</p>
                 </a>
@@ -122,7 +122,7 @@
                 </a>
               </li>
             </ul>
-          </li> --}}
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

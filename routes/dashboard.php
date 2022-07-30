@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\BuyController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\ProfilreController;
 use App\Http\Controllers\Dashboard\TradeController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,8 +63,17 @@ Route::group(['prefix' => 'dashboard'], function() {
     Route::post('my-order-received', [BuyController::class, 'myOrderReceived'])->name('my.order.received');
   
 
-  Route::get('orders', [BuyController::class, 'orders'])->name('orders.list');
-  Route::get('order-details/{id}', [BuyController::class, 'ordersDetails'])->name('trading.details');
-  Route::post('orders-status-update', [BuyController::class, 'orderStatusUpdate'])->name('order.status.update');
+    Route::get('orders', [BuyController::class, 'orders'])->name('orders.list');
+    Route::get('order-details/{id}', [BuyController::class, 'ordersDetails'])->name('trading.details');
+    Route::post('orders-status-update', [BuyController::class, 'orderStatusUpdate'])->name('order.status.update');
+
+
+    /**
+     * profile
+     */
+
+     Route::get('profile',[ProfilreController::class,'profile'])->name('profile');
+     Route::post('profile-update',[ProfilreController::class,'profileUpdate'])->name('profile.update');
+    
 
 });
