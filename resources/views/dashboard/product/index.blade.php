@@ -37,7 +37,7 @@
                     <td><img src="{{$product->image}}" alt="" width="30" height="30"></td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->size}}</td>
-                    <td>{{$product->price}} $</td>
+                    <td>@if($product->price > 0 )$ {{$product->price}}@endif</td>
                     <td>{{$product->quantity}}</td>
                     <td>{{$product->type}}</td>
                     <td>

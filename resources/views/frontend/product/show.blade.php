@@ -10,9 +10,11 @@
                 @if($product->size) 
                 <p class="small mb-1">Size: {{ $product->size }}</p>
                 @endif
-                <div class="fs-5 mb-5">
+               @if($product->price > 0)
+               <div class="fs-5 mb-5">
                     <span class=>${{ $product->price }}</span>
                 </div>
+               @endif
                 <p class="lead">{{ $product->description }}</p>
                 <h3>Seller Contact Details</h3>
                 <p>Telephone Number : {{$product->seller->telephone_number}}</p> 

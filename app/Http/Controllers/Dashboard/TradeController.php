@@ -80,7 +80,8 @@ class TradeController extends Controller
                     'quantity' => $trade->product->quantity - 1
                 ]);
             }
-            return redirect()->back()->with('success', "Product successfully ".$request->status);
+            $messege = $request->status == 'accept' ? 'accepted' : 'shipped';
+            return redirect()->back()->with('success', "Product successfully ".$messege);
         }
         return redirect()->back()->with('dismiss', "Product does not exist");
     }

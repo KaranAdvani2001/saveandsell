@@ -45,9 +45,9 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Price<span class="text-danger">*</span></label>
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Price</label>
           <div class="col-sm-10">
-            <input type="number" step="any" name="price" class="form-control" required value="{{$product->price}}">
+            <input type="number" step="any" name="price" class="form-control" required value="{{ $product->price > 0 ? $product->price : ''}}">
             <span class="text-danger">{{$errors->first('price') }}</span>
           </div>
         </div>

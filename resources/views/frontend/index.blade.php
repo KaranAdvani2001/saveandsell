@@ -15,7 +15,7 @@
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{ $product->name }}</h5>
                             <!-- Product price-->
-                            ${{ $product->price }}
+                           @if($product->price > 0) ${{ $product->price }} @endif
                         </div>
                     </div>
                     <!-- Product actions-->

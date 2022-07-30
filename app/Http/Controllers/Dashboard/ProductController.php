@@ -28,7 +28,7 @@ class ProductController extends Controller
         $request->validate([
             'category_id'   => 'required',
             'name'          => 'required',
-            'price'         => 'required|numeric',
+            'price'         => 'nullable|numeric',
             'quantity'      => 'required|numeric',
             'image'         => 'required|mimes:jpg,jpeg,png,bmp,tiff |max:4096',
             'type'          => 'required'
@@ -46,7 +46,7 @@ class ProductController extends Controller
                 'category_id'   => $request->category_id,
                 'name'          => $request->name,
                 'size'          => $request->size,
-                'price'         => $request->price,
+                'price'         => $request->price > 0 ? $request->price : 0,
                 'quantity'      => $request->quantity,
                 'description'   => $request->description,
                 'image'         => $image,
@@ -83,7 +83,7 @@ class ProductController extends Controller
         $request->validate([
             'category_id' => 'required',
             'name' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'nullable|numeric',
             'quantity' => 'required|numeric',
             'image' => 'nullable|mimes:jpg,jpeg,png,bmp,tiff |max:4096'
         ]);
@@ -100,7 +100,7 @@ class ProductController extends Controller
                 'category_id'   => $request->category_id,
                 'name'          => $request->name,
                 'size'          => $request->size,
-                'price'         => $request->price,
+                'price'         => $request->price > 0 ? $request->price : 0,
                 'quantity'      => $request->quantity,
                 'type'          => $request->type,
                 'description'   => $request->description,
