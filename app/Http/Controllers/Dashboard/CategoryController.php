@@ -41,10 +41,10 @@ class CategoryController extends Controller
             if(!empty($category)) {
                 return view('dashboard.category.edit',['category' => $category, 'menu' => 'category']);
             } 
-            return redirect()->route('category.index')->with('dismiss', 'Category does not found');
+            return redirect()->route('category.index')->with('dismiss', 'Category is not found');
 
         } catch(Exception $e) {
-            return redirect()->route('category.index')->with('dismiss', 'Category does not found');
+            return redirect()->route('category.index')->with('dismiss', 'Category is not found');
         }
     }
 
@@ -62,7 +62,7 @@ class CategoryController extends Controller
 
             return redirect()->route('category.index')->with('success', "Category successfully updated");
         }
-        return redirect()->route('category.index')->with('dismiss', "Category doesn't exixt");
+        return redirect()->route('category.index')->with('dismiss', "Category is not exixt");
     }
 
     
@@ -75,10 +75,10 @@ class CategoryController extends Controller
                 return redirect()->route('category.index')->with('success', 'Category successfully deleted');
 
             } 
-            return redirect()->route('category.index')->with('dismiss', 'Category does not found');
+            return redirect()->route('category.index')->with('dismiss', 'Category is not found');
 
         } catch(Exception $e) {
-            return redirect()->route('category.index')->with('dismiss', 'Category does not found');
+            return redirect()->route('category.index')->with('dismiss', 'Category is not found');
         }
     }
 }

@@ -71,10 +71,10 @@ class ProductController extends Controller
             if(!empty($product)) {
                 return view('dashboard.product.edit',['product' => $product, 'categories' => $categories, 'menu' => 'product']);
             } 
-            return redirect()->route('product.index')->with('dismiss', 'Product does not found');
+            return redirect()->route('product.index')->with('dismiss', 'Product is not found');
 
         } catch(Exception $e) {
-            return redirect()->route('product.index')->with('dismiss', 'product does not found');
+            return redirect()->route('product.index')->with('dismiss', 'product is not found');
         }
     }
 
@@ -92,7 +92,7 @@ class ProductController extends Controller
 
             $product = Product::where(['id' => $request->edit_id])->first();
             if(empty($product))  {
-                return redirect()->back()->with('dismiss', "Product doesn't exists");
+                return redirect()->back()->with('dismiss', "Product is not exists");
             }
                 
             $productData = [
@@ -127,10 +127,10 @@ class ProductController extends Controller
                 return redirect()->route('product.index')->with('success', 'Product successfully deleted');
 
             } 
-            return redirect()->route('product.index')->with('dismiss', 'Product does not found');
+            return redirect()->route('product.index')->with('dismiss', 'Product is not found');
 
         } catch(Exception $e) {
-            return redirect()->route('product.index')->with('dismiss', 'Product does not found');
+            return redirect()->route('product.index')->with('dismiss', 'Product is not found');
         }
     }
 

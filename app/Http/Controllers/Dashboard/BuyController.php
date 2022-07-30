@@ -42,7 +42,7 @@ class BuyController extends Controller
             ]);
             return redirect()->route('my.order')->with('success', "Product successfully received");
         }
-        return redirect()->back()->with('dismiss', "Product doesn't exists");
+        return redirect()->back()->with('dismiss', "Product is not exists");
     }
 
     /**
@@ -82,7 +82,7 @@ class BuyController extends Controller
             }
             return redirect()->back()->with('success', "Product successfully ".$request->status);
         }
-        return redirect()->back()->with('dismiss', "Product doesn't exists");
+        return redirect()->back()->with('dismiss', "Product is not exists");
     }
 
 }
