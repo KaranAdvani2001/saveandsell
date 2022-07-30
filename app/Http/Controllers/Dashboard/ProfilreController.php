@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\CurrentPasswordCheckRule;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfilreController extends Controller
 {
+    /**
+     * ************************ profile *********************
+     */
     public function profile()
     {
         return view('dashboard.profile.profile',['menu' => 'profile', 'submenu' => 'profile', 'user' => Auth::user()]);
@@ -47,4 +52,31 @@ class ProfilreController extends Controller
         }
         
     }
+
+    /**
+     * *********************** password ************************
+     */
+    public function password()
+    {
+        return view('dashboard.profile.password',['menu' => 'profile', 'submenu' => 'password', 'user' => Auth::user()]);
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+
+        $request->validate([
+            'current_password' => ['required', new CurrentPasswordCheckRule()],
+            'password' => ['required', 'min:6', 'confirmed', 'different:current_password'],
+            'password_confirmation' => ['required']
+        ]);
+
+
+        User::where(['id' => Auth::id()])->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with("success", "Password successfully updated");
+
+    }
+
 }

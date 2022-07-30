@@ -116,7 +116,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link {{isset($submenu) && $submenu == 'password' ?'active':''}}">
+                <a href="{{route('password')}}" class="nav-link {{isset($submenu) && $submenu == 'password' ?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Password change</p>
                 </a>

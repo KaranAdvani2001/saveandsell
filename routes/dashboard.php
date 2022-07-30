@@ -75,5 +75,8 @@ Route::group(['prefix' => 'dashboard'], function() {
      Route::get('profile',[ProfilreController::class,'profile'])->name('profile');
      Route::post('profile-update',[ProfilreController::class,'profileUpdate'])->name('profile.update');
     
+     Route::get('password',[ProfilreController::class,'password'])->name('password');
+     Route::post('password-update',[ProfilreController::class,'passwordUpdate'])->name('password.update');
+    
 
 });
