@@ -14,6 +14,10 @@
                     <span class=>${{ $product->price }}</span>
                 </div>
                 <p class="lead">{{ $product->description }}</p>
+                <h3>Seller Contact Details</h3>
+                <p>Telephone Number : {{$product->seller->telephone_number}}</p> 
+
+
                 {{-- <form action="{{route('cart.add')}}" method="post">
                     @csrf
                     <div class="d-flex">

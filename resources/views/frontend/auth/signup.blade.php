@@ -9,7 +9,7 @@
         <div class="col-10">
   
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="fw-normal mb-0 text-black">Crate an account for sale and trade</h3>
+                <h3 class="fw-normal mb-0 text-black">Create an account for sale and trade</h3>
               </div>
 
               <div class="card mb-4">

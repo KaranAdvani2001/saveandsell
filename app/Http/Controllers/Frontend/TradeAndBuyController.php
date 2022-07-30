@@ -24,7 +24,7 @@ class TradeAndBuyController extends Controller
                 'seller_side_status' => 'Requested'   
             ]);
 
-            return redirect()->route('home')->with('success', "Requeset sent to the seller" );
+            return redirect()->route('home')->with('success', "Request sent to the seller" );
 
         } catch (Exception $e) {
             return redirect()->back()->with('dismiss', $e->getMessage() );
@@ -44,7 +44,7 @@ class TradeAndBuyController extends Controller
                 'seller_side_status' => 'Requested'   
             ]);
 
-            return redirect()->route('home')->with('success', "Requeset sent to the seller" );
+            return redirect()->route('home')->with('success', "Request sent to the seller" );
 
         } catch (Exception $e) {
             return redirect()->back()->with('dismiss', $e->getMessage() );

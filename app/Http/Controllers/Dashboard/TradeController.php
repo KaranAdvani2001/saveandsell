@@ -42,7 +42,7 @@ class TradeController extends Controller
             ]);
             return redirect()->route('my.trade')->with('success', "Product successfully received");
         }
-        return redirect()->back()->with('dismiss', "Product is not exists");
+        return redirect()->back()->with('dismiss', "Product does not exist");
     }
 
     /**
@@ -82,7 +82,7 @@ class TradeController extends Controller
             }
             return redirect()->back()->with('success', "Product successfully ".$request->status);
         }
-        return redirect()->back()->with('dismiss', "Product is not exists");
+        return redirect()->back()->with('dismiss', "Product does not exist");
     }
 
 }

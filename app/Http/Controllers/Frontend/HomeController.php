@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('frontend.index', ['menu' => 'home','products' => Product::orderBy('id', 'desc')->limit(4)->get()]);
+        return view('frontend.index', ['menu' => 'home','products' => Product::where('quantity', '>', 0)->orderBy('id', 'desc')->limit(4)->get()]);
     }
 
     public function about()
@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function shop( Request $request)
     {
-        $query = Product::orderBy('id','desc');
+        $query = Product::where('quantity', '>', 0)->orderBy('id','desc');
 
         $query->when(request('products') == 'new-arrivals', function ($q) use($request) {
             return $q->orderBy('id','desc');
