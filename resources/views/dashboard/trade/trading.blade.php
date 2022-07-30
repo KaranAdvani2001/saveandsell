@@ -45,7 +45,7 @@
               @endif
             </tbody>
           </table>
-          {{-- {!! $trades->links() !!} --}}
+          {!! $trades->links() !!}
         </div>
         <!-- /.card-body -->
       </div>

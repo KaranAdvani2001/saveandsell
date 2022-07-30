@@ -38,13 +38,13 @@
                 </li>
                 @endif
             </ul>
-            <form class="d-flex">
+            {{-- <form class="d-flex">
                 <a class="btn btn-outline-dark" type="submit" href="{{route('cart.list')}}">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
                     <span class="badge bg-dark text-white ms-1 rounded-pill">{{ App\Models\Cart::where(['user_id' => Auth::id()])->count() }}</span>
                 </a>
-            </form>
+            </form> --}}
         </div>
     </div>
 </nav>

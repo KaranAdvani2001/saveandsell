@@ -123,6 +123,16 @@
               </li>
             </ul>
           </li>
+          @if(Auth::user()->is_admin)
+          <li class="nav-item has-treeview">
+            <a href="{{route('user.list')}}" class="nav-link {{isset($menu) && $menu == 'user' ?'active':''}}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                User list
+              </p>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\ProfilreController;
 use App\Http\Controllers\Dashboard\TradeController;
+use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -71,12 +72,19 @@ Route::group(['prefix' => 'dashboard'], function() {
     /**
      * profile
      */
-
+    
      Route::get('profile',[ProfilreController::class,'profile'])->name('profile');
      Route::post('profile-update',[ProfilreController::class,'profileUpdate'])->name('profile.update');
     
      Route::get('password',[ProfilreController::class,'password'])->name('password');
      Route::post('password-update',[ProfilreController::class,'passwordUpdate'])->name('password.update');
     
+     /**
+      * buyer/seller list
+      */
+     Route::get('user-list',[UserController::class,'index'])->name('user.list');
+     Route::get('make-admin/{id}',[UserController::class,'makeAdmin'])->name('make.admin');
+     Route::get('remove-admin/{id}',[UserController::class,'removedAdmin'])->name('remove.admin');
+
 
 });
