@@ -49,24 +49,29 @@
               <table class="table table-striped">
                 <thead>
                 <tr>
-                  <th>Image</th>
-                  <th>Category</th>
-                  <th>Name</th>
-                  <th>Size</th>
-                  <th>Price</th>
+                  <th>My Product</th>
+                  <th>Buyer Product</th>
                 </tr>
                 </thead>
                 <tbody>
-               @if(!empty($trade->product))
-               <tr>
-                <td><img src="{{$trade->product->image}}" width="180" height="120" alt=""></td>
-                <td>{{$trade->product->category->name}}</td>
-                <td>{{$trade->product->name}}</td>
-                <td>{{$trade->product->size}}</td>
-                <td>$ {{$trade->product->price}}</td>
-              </tr>
-                   
-               @endif
+                <tr>
+                  <td>                    
+                    @if(!empty($trade->sellerProduct))
+                    <strong>Name  : </strong> {{$trade->sellerProduct->name}} <br>
+                    <strong>Size  : </strong> {{$trade->sellerProduct->size}} <br>
+                    <strong>Description  : </strong> {{$trade->sellerProduct->description}} <br>
+                    <strong>Image : </strong> <img src="{{$trade->sellerProduct->image}}" width="90" height="80" alt=""> <br>
+                    @endif
+                  </td>
+                  <td>                    
+                    @if(!empty($trade->buyerProduct))
+                    <strong>Name  : </strong> {{$trade->buyerProduct->name}} <br>
+                    <strong>Size  : </strong> {{$trade->buyerProduct->size}} <br>
+                    <strong>Description  : </strong> {{$trade->buyerProduct->description}} <br>
+                    <strong>Image : </strong> <img src="{{$trade->buyerProduct->image}}" width="90" height="80" alt=""> <br>
+                    @endif
+                  </td>
+                </tr>
                 </tbody>
               </table>
             </div>
@@ -77,12 +82,6 @@
           <div class="row">
             <!-- accepted payments column -->
             <div class="col-12">
-              <strong class="lead">Product Details:</strong>
-              <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-              @if($trade->product)
-              {{$trade->product->description}}
-              @endif
-              </p>
             </div>
             <!-- /.col -->
           </div>
@@ -115,7 +114,17 @@
                 <button type="submit" class="btn btn-info float-right" style="margin-right: 5px;">
                   Accept
                 </button>
-               </form>           
+               </form>  
+               
+               <form action="{{route('trading.decline')}}" method="POST">
+                @csrf
+                <input type="hidden" name="trade_id" value="{{$trade->id}}">
+                <input type="hidden" name="status" value="Declined">
+                <button type="submit" class="btn btn-warning float-right" style="margin-right: 5px;">
+                  Decline
+                </button>
+               </form>  
+
               @endif
             </div>
           </div>

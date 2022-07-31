@@ -26,9 +26,11 @@
             </div>
         @endforeach
         </div>
-        @if (isset($menu) && $menu == 'shop')
+        {!! $products->links() !!}
+
+        {{-- @if (isset($menu) && $menu == 'shop')
             {!! $products->links() !!}
-        @endif
+        @endif --}}
     </div>
 </section>
 @endsection

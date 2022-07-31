@@ -34,6 +34,12 @@ class ProductController extends Controller
             'type'          => 'required'
         ]);
 
+        if($request->type == 'for sale' && empty($request->price))
+        {
+            return redirect()->back()->with('dismiss', 'Sale product price must be required');
+        }
+
+
         try {
 
             $image = null;
@@ -90,11 +96,21 @@ class ProductController extends Controller
 
         try {
 
+            if($request->type == 'for sale' && empty($request->price))
+            {
+                return redirect()->back()->with('dismiss', 'Sale product price must be required');
+            }
+
             $product = Product::where(['id' => $request->edit_id])->first();
             if(empty($product))  {
                 return redirect()->back()->with('dismiss', "Product is not exists");
             }
-                
+
+            if($request->type == 'for sale' && $request->price == 0)
+            {
+                return redirect()->back()->with('dismiss', 'Sale product price must be greater than 0');
+            }
+                 
             $productData = [
                 'seller_id'       => Auth::id(),
                 'category_id'   => $request->category_id,

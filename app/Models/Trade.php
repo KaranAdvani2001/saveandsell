@@ -21,8 +21,13 @@ class Trade extends Model
         return $this->belongsTo(User::class, 'seller_id');
     }
 
-    public function product()
+    public function sellerProduct()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Product::class, 'seller_product');
+    }
+
+    public function buyerProduct()
+    {
+        return $this->belongsTo(Product::class, 'buyer_product');
     }
 }

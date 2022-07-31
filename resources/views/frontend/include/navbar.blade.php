@@ -12,8 +12,6 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{url('shop')}}">All Products</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{{url('shop?products=popular')}}">Popular Items</a></li>
-                        <li><a class="dropdown-item" href="{{url('shop?products=new-arrivals')}}">New Arrivals</a></li>
                         <li><a class="dropdown-item" href="{{url('shop?products=for-sale')}}">For Sale</a></li>
                         <li><a class="dropdown-item" href="{{url('shop?products=trade')}}">Trade</a></li>
                     </ul>

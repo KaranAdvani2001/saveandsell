@@ -23,7 +23,7 @@ class TradeController extends Controller
     public function details($id)
     {
         try {
-            $trade = Trade::where(['id' => decrypt($id)])->first();
+            $trade = Trade::where(['id' => decrypt($id)])->with('sellerProduct','buyerProduct')->first();
             return view('dashboard.trade.my_trade_show',['trade' => $trade, 'menu' => 'trade', 'submenu' => 'my trade']);
 
         } catch (Exception $e) {
@@ -57,12 +57,26 @@ class TradeController extends Controller
     public function tradingDetails($id)
     {
         try {
-            $trade = Trade::where(['id' => decrypt($id)])->first();
+            $trade = Trade::where(['id' => decrypt($id)])->with('sellerProduct','buyerProduct')->first();
             return view('dashboard.trade.trading_show',['trade' => $trade, 'menu' => 'trade', 'submenu' => 'trading']);
 
         } catch (Exception $e) {
 
         }
+    }
+
+    public function tradingDecline(Request $request)
+    {
+        $trade = Trade::where(['id' => $request->trade_id])->first();
+        if(!empty($trade)) {
+            
+            $trade->update([
+                'buyer_side_status'     => 'Declined',
+                'seller_side_status'    => 'Declined',
+            ]);
+            return redirect()->back()->with('success', "Product successfully declined");
+        }
+        return redirect()->back()->with('dismiss', "Product does not exist");
     }
 
     public function tradingStatusUpdate(Request $request)
@@ -76,8 +90,12 @@ class TradeController extends Controller
             ]);
 
             if($request->status == 'Shipping') {
-                $trade->product->update([
-                    'quantity' => $trade->product->quantity - 1
+                $trade->sellerProduct->update([
+                    'quantity' => $trade->sellerProduct->quantity - 1
+                ]);
+
+                $trade->buyerProduct->update([
+                    'quantity' => $trade->buyerProduct->quantity - 1
                 ]);
             }
             $messege = $request->status == 'accept' ? 'accepted' : 'shipped';

@@ -16,10 +16,11 @@ class TradeAndBuyController extends Controller
         try {
             Trade::create([
                 'buyer_id'      => Auth::id(),
-                'product_id'    => $request->product_id,
+                'seller_product'=> $request->seller_product,
                 'seller_id'     => $request->seller_id,
                 'contact_method'=> $request->contact_method,
                 'contact_info'  => $request->contact_info,
+                'buyer_product' => $request->buyer_product,
                 'buyer_side_status' => 'Pending',
                 'seller_side_status' => 'Requested'   
             ]);

@@ -19,60 +19,104 @@
                 <h3>Seller Contact Details</h3>
                 <p>Telephone Number : {{$product->seller->telephone_number}}</p> 
 
-
-                {{-- <form action="{{route('cart.add')}}" method="post">
-                    @csrf
-                    <div class="d-flex">
-                    
-                        <input class="form-control text-center me-3" id="inputQuantity" type="quantity" name="quantity" value="1" style="max-width: 3rem" required/>
-                        <span class="text-danger">{{$errors->first('quantity')}}</span>
-                        <input type="hidden" name="product_id" value="{{$product->id}}"/>
-                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Add to cart
-                        </button>
-                    </div>
-                </form> --}}
-
                @if($product->seller_id != Auth::id())
-               <div class="page-wrapper">
-                <div class="wrapper wrapper--w900">
-                    <div class="card card-6">
-                        <div class="card-heading">
-                            <h2 class="title">{{$product->type == 'trade' ? "Trading Contact From" : "Buying Contact From"}}</h2>
-                        </div>
-                        <div class="card-body">
-                            <form method="POST" action = "{{ $product->type == 'trade' ? route('trade') : route('buy')}}" >
-                                @csrf
-                                <div class="form-row">
-                                    <div class="name">Contact Method</div>
-                                    <div class="value">
-                                        <select class="input--style-12" type="select" name="contact_method" required>
-                                            <option value="{{null}}">Select Contact Method</option>
-                                            <option value="whatsapp">Whatsapp</option>
-                                            <option value="facebook">Facebook</option>
-                                            <option value="email">Email</option>
-                                        </select>
-                                    </div>
+                @if ($product->type == 'trade')
+                    @if(isset($tradable_products[0]))                    
+                    <div class="page-wrapper">
+                        <div class="wrapper wrapper--w900">
+                            <div class="card card-6">
+                                <div class="card-heading">
+                                    <h2 class="title">{{$product->type == 'trade' ? "Trading Contact From" : "Buying Contact From"}}</h2>
                                 </div>
-                                <div class="form-row">
-                                    <div class="name">Contact Info</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-12" type="string" name="contact_info" required>
+                                <div class="card-body">
+                                    <form method="POST" action = "{{ $product->type == 'trade' ? route('trade') : route('buy')}}" >
+                                        @csrf
+                                        <div class="form-row">
+                                            <div class="name">Contact Method</div>
+                                            <div class="value">
+                                                <select class="input--style-12" type="select" name="contact_method" required>
+                                                    <option value="{{null}}">Select Contact Method</option>
+                                                    <option value="whatsapp">Whatsapp</option>
+                                                    <option value="facebook">Facebook</option>
+                                                    <option value="email">Email</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="name">Contact Info</div>
+                                            <div class="value">
+                                                <div class="input-group">
+                                                    <input class="input--style-12" type="string" name="contact_info" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-row">
+                                            <div class="name">Tradeable Product</div>
+                                            <div class="value">
+                                                <select class="input--style-12" type="select" name="buyer_product" required>
+                                                    <option value="{{null}}">Select Tradeable Product</option>
+                                                    @if (isset($tradable_products[0]))
+                                                        @foreach ($tradable_products as $trading_p )
+                                                        <option value="{{$trading_p->id}}">{{$trading_p->name}}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="seller_product" value="{{$product->id}}">
+                                        <input type="hidden" name="seller_id" value="{{$product->seller_id}}">
+                                        <div class="card-footer">
+                                            <button class="btn btn-info" type="submit">{{$product->type == 'trade' ? "Trade" : "Buy Now"}}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                        <h3 class="text-danger">You have no tradeable products</h3>
+                    @endif
+                @else                    
+                <div class="page-wrapper">
+                    <div class="wrapper wrapper--w900">
+                        <div class="card card-6">
+                            <div class="card-heading">
+                                <h2 class="title">{{$product->type == 'trade' ? "Trading Contact From" : "Buying Contact From"}}</h2>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" action = "{{ $product->type == 'trade' ? route('trade') : route('buy')}}" >
+                                    @csrf
+                                    <div class="form-row">
+                                        <div class="name">Contact Method</div>
+                                        <div class="value">
+                                            <select class="input--style-12" type="select" name="contact_method" required>
+                                                <option value="{{null}}">Select Contact Method</option>
+                                                <option value="whatsapp">Whatsapp</option>
+                                                <option value="facebook">Facebook</option>
+                                                <option value="email">Email</option>
+                                            </select>
                                         </div>
                                     </div>
-                                </div>
-                                <input type="hidden" name="product_id" value="{{$product->id}}">
-                                <input type="hidden" name="seller_id" value="{{$product->seller_id}}">
-                                <div class="card-footer">
-                                    <button class="btn btn-info" type="submit">{{$product->type == 'trade' ? "Trade" : "Buy Now"}}</button>
-                                </div>
-                            </form>
+                                    <div class="form-row">
+                                        <div class="name">Contact Info</div>
+                                        <div class="value">
+                                            <div class="input-group">
+                                                <input class="input--style-12" type="string" name="contact_info" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <input type="hidden" name="seller_id" value="{{$product->seller_id}}">
+                                    <div class="card-footer">
+                                        <button class="btn btn-info" type="submit">{{$product->type == 'trade' ? "Trade" : "Buy Now"}}</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                @endif
                @endif
 
             </div>

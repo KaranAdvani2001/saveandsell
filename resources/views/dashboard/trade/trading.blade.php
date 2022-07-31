@@ -27,13 +27,14 @@
                 @if(isset($trades[0]))
                 @foreach ($trades as $trade )                    
                 <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td><img src="{{$trade->product->image}}" alt="" width="30" height="30"></td>
-                    <td>{{$trade->product->name}}</td>
+                  <td>{{$loop->iteration}}</td>
+                    <td>@if(!empty($trade->sellerProduct))<img src="{{$trade->sellerProduct->image}}" alt="" width="30" height="30"> @endif</td>
+                    <td>@if(!empty($trade->sellerProduct)){{$trade->sellerProduct->name}}@else Product is not available @endif</td>
                     <td>{{!empty($trade->buyer) ? $trade->buyer->first_name.' '.$trade->buyer->last_name : null}}</td>
                     <td>{{!empty($trade->buyer) ? $trade->buyer->telephone_number : null}}</td>
                     <td>{{!empty($trade->buyer) ? $trade->buyer->address_line1.','.$trade->buyer->city.','.$trade->buyer->country : null}}</td>
                     
+                    <td>{{$trade->contact_method}}</td>
                     <td>{{$trade->seller_side_status}}</td>
                     <td>
                       <a type="button" name="edit" href="{{route('trading.details', encrypt($trade->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>

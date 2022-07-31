@@ -53,6 +53,7 @@ Route::group(['prefix' => 'dashboard'], function() {
  
     Route::get('trading', [TradeController::class, 'trading'])->name('trading.list');
     Route::get('trading-details/{id}', [TradeController::class, 'tradingDetails'])->name('trading.details');
+    Route::post('trading-decline', [TradeController::class, 'tradingDecline'])->name('trading.decline');
     Route::post('trading-status-update', [TradeController::class, 'tradingStatusUpdate'])->name('trading.status.update');
   
     /**

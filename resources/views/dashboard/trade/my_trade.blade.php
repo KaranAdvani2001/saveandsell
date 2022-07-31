@@ -26,10 +26,10 @@
             <tbody>
                 @if(isset($trades[0]))
                 @foreach ($trades as $trade )                    
-                <tr>
+                <tr> 
                     <td>{{$loop->iteration}}</td>
-                    <td><img src="{{$trade->product->image}}" alt="" width="30" height="30"></td>
-                    <td>{{$trade->product->name}}</td>
+                    <td>@if($trade->sellerProduct)<img src="{{$trade->sellerProduct->image}}" alt="" width="30" height="30">@endif</td>
+                    <td>@if($trade->sellerProduct){{$trade->sellerProduct->name}}@else Product is not avaiable @endif</td>
                     <td>{{!empty($trade->seller) ? $trade->seller->first_name.' '.$trade->seller->last_name : null}}</td>
                     <td>{{!empty($trade->seller) ? $trade->seller->telephone_number : null}}</td>
                     <td>{{!empty($trade->seller) ? $trade->seller->address_line1.','.$trade->seller->city.','.$trade->seller->country : null}}</td>
@@ -37,8 +37,6 @@
                     <td>{{$trade->buyer_side_status}}</td>
                     <td>
                       <a type="button" name="edit" href="{{route('trade.details', encrypt($trade->id))}}" class="edit btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                      {{-- <a type="button" name="delete" href="{{route('trade.delete', encrypt($trade->id))}}" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a> --}}
-                      
                     </td>
                 </tr>
               @endforeach

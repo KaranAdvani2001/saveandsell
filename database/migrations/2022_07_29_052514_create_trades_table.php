@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('buyer_id');
             $table->integer('seller_id');
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->integer('seller_product')->nullable();
+            $table->integer('buyer_product')->nullable();
             $table->string('contact_method')->nullable();
             $table->string('contact_info')->nullable();
             $table->string('buyer_side_status')->default('Pending');
